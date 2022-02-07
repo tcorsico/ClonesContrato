@@ -15,10 +15,11 @@ contract MyToken is Initializable, ERC20Upgradeable, AccessControlUpgradeable, U
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() initializer {}
 
-    function initialize(string memory _name, string memory _symbol, address owner) initializer public {
+    function initialize(string memory _name, string memory _symbol, address owner, uint _supply) initializer public {
         __ERC20_init(_name, _symbol);
         __AccessControl_init();
         __UUPSUpgradeable_init();
+        _mint(owner, _supply);
 
         _grantRole(DEFAULT_ADMIN_ROLE, owner);
         _grantRole(MINTER_ROLE, owner);
@@ -45,9 +46,9 @@ contract Factory {
         contratoAClonar = _implementation;
     }
 
-    function clonar(string memory _name, string memory _symbol) external {
+    function clonar(string memory _name, string memory _symbol, uint _supply) external {
         address clone = Clones.clone(contratoAClonar);
         clones[msg.sender] = clone;
-        MyToken(clone).initialize(_name, _symbol, msg.sender);
+        MyToken(clone).initialize(_name, _symbol, msg.sender, _supply);
     }
 }

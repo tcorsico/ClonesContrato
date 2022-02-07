@@ -6,6 +6,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 
 contract MyToken is Initializable, ERC20Upgradeable, AccessControlUpgradeable, UUPSUpgradeable {
@@ -38,12 +39,16 @@ contract MyToken is Initializable, ERC20Upgradeable, AccessControlUpgradeable, U
 }
 
 
-contract Factory {
+contract Factory is Ownable {
     address public contratoAClonar;
     mapping (address => address) public clones;
 
     constructor (address _implementation) {
         contratoAClonar = _implementation;
+    }
+
+    function cambiarContratoAClonar(address _nuevoContrato) public onlyOwner{
+        _nuevoContrato = contratoAClonar;
     }
 
     function clonar(string memory _name, string memory _symbol, uint _supply) external {

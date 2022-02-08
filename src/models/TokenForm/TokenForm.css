@@ -1,0 +1,6 @@
+div.form-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: .5rem;
+}

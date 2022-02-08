@@ -1,10 +1,9 @@
 .footer{
-    position: absolute;
+    margin-top: auto;
     bottom: 0;
     width: 100%;
     background-color: #663DBD;
     text-align: center;
-    /* height: 12rem; */
     align-items : center;
     padding : 1rem 0;
 }
@@ -65,8 +64,6 @@
 }
 
 .divider {
-    /* height : calc(100% - 4rem); */
-    /* height: 10rem; */
     width: 1px;
     background-color: rgba(255, 255, 255, 0.795);
 }
@@ -75,7 +72,7 @@
 @media screen and (min-width : 850px){
 
     .footer{
-        height: 10rem;
+        height: 8rem;
     }
 
 
@@ -84,7 +81,6 @@
     }
 
     .divider {
-        /* height : calc(100% - 4rem); */
-        height: 10rem;
+        height: 8rem;
     }
 }

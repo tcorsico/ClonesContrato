@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Button } from "@mui/material";
+import "./Navbar.css";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material"
 
 const Navbar = () => {
     // Variables
@@ -43,12 +45,22 @@ const Navbar = () => {
         checkIfWalletIsConnected();
     }, [])
     // Componente que se renderiza
-    return <nav id="navbar">
-        <div className="nav-bar">
-            <h1>ActionFintech</h1>
-            {currentAccount === "" ? <Button variant="contained" sx={{ backgroundColor: '#663DBD' }} onClick={connectWallet}>Conectar Wallet</Button> : <h4>La cuenta conectada es {currentAccount.slice(0, 5)}...{currentAccount.slice(37)}</h4>}
-        </div>
-    </nav>;
+    return (
+        <AppBar position="static" sx={{ marginBottom: '1rem', backgroundColor: 'white', color: '#663dbd' }}>
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', margin: '0 5%' }}>
+                <Typography variant="h5" component="h1" sx={{ flexGrow: 1, maxWidth: '200px' }}>
+                    ActionFintech
+                </Typography>
+                <div>
+                    {currentAccount === ""
+                        ? <Button variant="contained" onClick={connectWallet}>Conectar Wallet</Button>
+                        : <Button variant="outlined" startIcon={<AccountCircle />}>
+                            {currentAccount.slice(0, 5)}...{currentAccount.slice(37)}
+                        </Button>
+                    }</div>
+            </Toolbar>
+        </AppBar >
+    )
 };
 
 export default Navbar;

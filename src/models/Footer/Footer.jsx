@@ -1,12 +1,11 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-//import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import backLogo from "../assets/logodaapsblanco.svg"
-import { Container } from "react-bootstrap"
-
-import '../components/styles/Footer.css';
+import "./Footer.css";
+import { Typography, Link, Grid } from '@mui/material';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import backLogo from "../../assets/logodaapsblanco.svg";
+import { Container } from "react-bootstrap";
 
 function Copyright() {
     return (
@@ -47,9 +46,9 @@ export default function Footer() {
                     </Grid>
                     <div className='divider' />
                     <Grid xs={4} sm={4} md={4} lg={4} className='footer-div tercero'>
-                        <a href="https://www.instagram.com/dappsfactory/" target="_blank" rel="noreferrer"><i className="fab fa-instagram" /></a>
-                        <a href="https://www.facebook.com/DAppsFactory" target="_blank" rel="noreferrer"><i className="fab fa-facebook-square" /></a>
-                        <a href="https://twitter.com/DApp_Factory" target="_blank" rel="noreferrer"><i className="fab fa-twitter-square" /></a>
+                        <a href="https://www.instagram.com/dappsfactory/" target="_blank" rel="noreferrer"><InstagramIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
+                        <a href="https://www.facebook.com/DAppsFactory" target="_blank" rel="noreferrer"><FacebookIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
+                        <a href="https://twitter.com/DApp_Factory" target="_blank" rel="noreferrer"><TwitterIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
                     </Grid>
                 </Grid>
             </Container>

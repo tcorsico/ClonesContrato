@@ -55,6 +55,7 @@
     color: white;
     margin: 0px;
     font-family: 'Roboto Condensed', sans-serif;
+    padding-bottom: 0.3rem;
 }
 
 .fab{
@@ -74,7 +75,7 @@
 @media screen and (min-width : 850px){
 
     .footer{
-        height: 12rem;
+        height: 10rem;
     }
 
 

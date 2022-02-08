@@ -1,13 +1,9 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 //import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import logo from "../assets/logodaaps.svg";
 import backLogo from "../assets/logodaapsblanco.svg"
-import Divider from '@mui/material/Divider';
 import { Container } from "react-bootstrap"
 
 import '../components/styles/Footer.css';
@@ -55,7 +51,6 @@ export default function Footer() {
                         <a href="https://www.facebook.com/DAppsFactory" target="_blank" rel="noreferrer"><i className="fab fa-facebook-square" /></a>
                         <a href="https://twitter.com/DApp_Factory" target="_blank" rel="noreferrer"><i className="fab fa-twitter-square" /></a>
                     </Grid>
-
                 </Grid>
             </Container>
         </div>

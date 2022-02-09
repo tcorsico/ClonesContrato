@@ -25,15 +25,15 @@ const TokensTable = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650, maxWidth: '75%' }} aria-label="simple table">
+        <TableContainer component={Paper} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Table sx={{ minWidth: 650, maxWidth: '75%', margin: '1rem 1rem 3rem 1rem', border: 'solid rgba(0, 0, 0, 0.12) 1px' }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Token Name</TableCell>
                         <TableCell align="right">Symbol</TableCell>
                         <TableCell align="right">Address</TableCell>
                         <TableCell align="right">Owner</TableCell>
-                        <TableCell align="right">Supply</TableCell>
+                        <TableCell align="right">Initial Supply</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

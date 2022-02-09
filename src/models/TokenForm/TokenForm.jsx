@@ -9,8 +9,9 @@ const TokenForm = () => {
     const [name, setName] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
     const [supply, setSupply] = React.useState(0);
+    // Para mostrar la info
     const [newAddress, setNewAddress] = React.useState("");
-    const [newName, setNewName] = React.useState("")
+    const [newName, setNewName] = React.useState("");
     const [error, setError] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
     const [tarifa, setTarifa] = React.useState("0.009781055");
@@ -31,7 +32,7 @@ const TokenForm = () => {
                     const provider = new ethers.providers.Web3Provider(window.ethereum);
                     const signer = provider.getSigner();
                     let contract = new ethers.Contract(factory_address, factory_abi, signer);
-
+                    
                     // Obtengo el precio de tarifa
                     const gweiValue = (await contract.tarifa());
                     let etherValue = ethers.utils.formatEther(gweiValue);
@@ -41,7 +42,7 @@ const TokenForm = () => {
                     const supplyDecimal = supply.toString();
                     // Ejecuto la funcion clonar
                     await contract.clonar(name, symbol, supplyDecimal, { value: sendValue });
-                    checkEvents();
+                    await checkEvents();
                 } else {
                     console.log("No hay conexion a Metamask");
                 }
@@ -53,12 +54,14 @@ const TokenForm = () => {
     const checkEvents = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        // const myAddress = await signer.getAddress();
         let contract = new ethers.Contract(factory_address, factory_abi, signer);
+        // EVENTO
         contract.on("nuevoContrato", (address, symbol, name, owner) => {
             setNewAddress(address);
             setNewName(name);
             setSuccess(true);
+            // TODO: ARREGLAR AUTOIMPORT A METAMATSK
+            addToMetamask(address, symbol);
         })
     }
     const getFee = async () => {
@@ -76,6 +79,38 @@ const TokenForm = () => {
                 console.log("No hay conexion a Metamask");
             }
         } catch (error) {
+            console.error(error);
+        }
+    }
+    const addToMetamask = async ({ address, symbol }) => {
+        try {
+            const { ethereum } = window;
+            if (ethereum) {
+                // ADD TO METAMASK
+                window.ethereum.request({
+                    method: 'wallet_watchAsset',
+                    params: {
+                        type: 'ERC20',
+                        options: {
+                            address: address,
+                            symbol: symbol,
+                            decimals: 18,
+                        },
+                    },
+                })
+                    .then((success) => {
+                        if (success) {
+                            console.log('FOO successfully added to wallet!')
+                        } else {
+                            throw new Error('Something went wrong.')
+                        }
+                    })
+                    .catch(console.error)
+            } else {
+                console.error(`Salto un error`)
+            }
+        }
+        catch (error) {
             console.error(error);
         }
     }

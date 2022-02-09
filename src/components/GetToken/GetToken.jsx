@@ -10,7 +10,6 @@ const GetToken = () => {
     const [tokensCreated, setTokensCreated] = React.useState([{}]);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
-        getMyTokens()
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {

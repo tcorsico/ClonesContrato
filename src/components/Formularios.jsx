@@ -26,25 +26,7 @@ const Formularios = () => {
             console.error(error);
         }
     }
-    const getMyTokens = async () => {
-        try {
-            const { ethereum } = window;
-            if (ethereum) {
-                // Conecto al contrato
-                const provider = new ethers.providers.Web3Provider(window.ethereum);
-                const signer = provider.getSigner();
-                const myAddress = await signer.getAddress();
-                let contract = new ethers.Contract(factory_address, factory_abi, signer);
-                // Ejecuto la funcion clonar
-                const myTokens = await contract.clones(myAddress);
-                console.log(myTokens);
-            } else {
-                console.log("No hay conexion a Metamask");
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    
     // Component
     return (
         <>
@@ -74,8 +56,7 @@ const Formularios = () => {
                 </div>
                 <Button variant="contained" type="submit" sx={{ marginTop: '1rem' }} onClick={(e) => changeContract(e)}>CAMBIAR CONTRATO</Button>
             </form>
-            {/* VER TOKENS CREADOS AUTO */}
-            <Button variant="contained" sx={{ marginTop: '1rem' }} onClick={getMyTokens}>GET MY TOKENS</Button>
+
         </>
     );
 };

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import "./Navbar.css";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material"
+import { AccountCircle } from "@mui/icons-material";
+import GetToken from "../../components/GetToken/GetToken";
 
 const Navbar = () => {
     // Variables
@@ -54,9 +55,9 @@ const Navbar = () => {
                 <div>
                     {currentAccount === ""
                         ? <Button variant="contained" onClick={connectWallet}>Conectar Wallet</Button>
-                        : <Button variant="outlined" startIcon={<AccountCircle />}>
+                        : <><GetToken /><Button variant="outlined" startIcon={<AccountCircle />}>
                             {currentAccount.slice(0, 5)}...{currentAccount.slice(37)}
-                        </Button>
+                        </Button></>
                     }</div>
             </Toolbar>
         </AppBar >

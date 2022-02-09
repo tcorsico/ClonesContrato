@@ -630,6 +630,49 @@ export const mitoken_abi = [
 
 export const factory_abi = [
 	{
+		"inputs": [],
+		"name": "attack",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_nuevoContrato",
+				"type": "address"
+			}
+		],
+		"name": "cambiarContratoAClonar",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_supply",
+				"type": "uint256"
+			}
+		],
+		"name": "clonar",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -704,6 +747,30 @@ export const factory_abi = [
 				"internalType": "address",
 				"name": "_owner",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_supply",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_timeStamp",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_refund",
+				"type": "uint256"
 			}
 		],
 		"name": "nuevoContrato",
@@ -711,26 +778,57 @@ export const factory_abi = [
 	},
 	{
 		"inputs": [],
-		"name": "attack",
+		"name": "renounceOwnership",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tarifa",
+				"type": "uint256"
+			}
+		],
+		"name": "setTarifa",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_nuevoContrato",
+				"name": "newOwner",
 				"type": "address"
 			}
 		],
-		"name": "cambiarContratoAClonar",
+		"name": "transferOwnership",
 		"outputs": [],
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "clones",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "_contract",
+				"type": "address"
+			},
 			{
 				"internalType": "string",
 				"name": "_name",
@@ -745,27 +843,21 @@ export const factory_abi = [
 				"internalType": "uint256",
 				"name": "_supply",
 				"type": "uint256"
-			}
-		],
-		"name": "clonar",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+			},
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "clones",
-		"outputs": [
+				"internalType": "uint256",
+				"name": "_timeStamp",
+				"type": "uint256"
+			},
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_refund",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -812,13 +904,6 @@ export const factory_abi = [
 	},
 	{
 		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "tarifa",
 		"outputs": [
 			{
@@ -829,24 +914,11 @@ export const factory_abi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	}
-];
+]
 
 
 
 
 export const mitoken_address = "0x75c8BC86153C7bA3E78A08e70ab878FB4b20dD06"
-export const factory_address = "0xFCdA5CB52d664DDF0572B3CEa2dD2ebE3be42b9c"
+export const factory_address = "0x6d131d1ceC56424266cBa62d7086bd97EE971f24"

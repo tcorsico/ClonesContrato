@@ -7,8 +7,10 @@ import { Menu, Button, MenuItem } from "@mui/material";
 const GetToken = () => {
     const [myTokens, setMyTokens] = React.useState([]);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [tokensCreated, setTokensCreated] = React.useState([{}]);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
+        getMyTokens()
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
@@ -19,14 +21,14 @@ const GetToken = () => {
         try {
             const { ethereum } = window;
             if (ethereum) {
-                // Conecto al contrato
                 const provider = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = provider.getSigner();
-                const myAddress = await signer.getAddress();
                 let contract = new ethers.Contract(factory_address, factory_abi, signer);
-                // Ejecuto la funcion clonar
-                const myTokens2 = await contract.clones(myAddress);
-                setMyTokens([...myTokens, myTokens2]);
+                // Search historic events
+                let filterTo = contract.filters.nuevoContrato();
+                contract.queryFilter(filterTo)
+                    .then((event) => setMyTokens(event))
+                    .catch(() => console.error(`Flasho en getMyTokens`))
             } else {
                 console.log("No hay conexion a Metamask");
             }
@@ -35,7 +37,16 @@ const GetToken = () => {
         }
     }
     React.useEffect(() => {
-        getMyTokens();
+        // Instancio el contrato
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        let contract = new ethers.Contract(factory_address, factory_abi, signer);
+        // Search historic events
+        let filterTo = contract.filters.nuevoContrato();
+        contract.queryFilter(filterTo)
+            .then((event) => setTokensCreated(event))
+            .catch(() => console.error(`Flasho`))
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (

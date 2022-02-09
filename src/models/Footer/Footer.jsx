@@ -33,11 +33,11 @@ export default function Footer() {
                     className='grid-container'
                     wrap="nowrap"
                 >
-                    <Grid xs={4} sm={4} md={4} lg={4} className='footer-div primero'>
+                    <Grid item={true} xs={4} sm={4} md={4} lg={4} className='footer-div primero'>
                         <img id="layout-header-logo" src={backLogo} width="250px" alt="logo-action-fintech" />
                     </Grid>
                     <div className='divider' />
-                    <Grid xs={4} sm={4} md={4} lg={4} className='footer-div'>
+                    <Grid item={true} xs={4} sm={4} md={4} lg={4} className='footer-div'>
                         <p className='footer-text'>Albarellos 1916 Oficina E11</p>
                         <p className='footer-text'>Martinez(1640) Buenos Aires Argentina</p>
                         <p className='footer-text'>Ventas@actionfintech.com</p>
@@ -45,7 +45,7 @@ export default function Footer() {
                         <a href="https://dappsfactory.io" target="_blank" rel="noreferrer">dappsfactory.io</a>
                     </Grid>
                     <div className='divider' />
-                    <Grid xs={4} sm={4} md={4} lg={4} className='footer-div tercero'>
+                    <Grid item={true} xs={4} sm={4} md={4} lg={4} className='footer-div tercero'>
                         <a href="https://www.instagram.com/dappsfactory/" target="_blank" rel="noreferrer"><InstagramIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
                         <a href="https://www.facebook.com/DAppsFactory" target="_blank" rel="noreferrer"><FacebookIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
                         <a href="https://twitter.com/DApp_Factory" target="_blank" rel="noreferrer"><TwitterIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>

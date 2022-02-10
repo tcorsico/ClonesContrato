@@ -6,7 +6,6 @@ import Footer from './models/Footer/Footer';
 import TokenForm from "./models/TokenForm/TokenForm";
 import TokensCreated from "./models/TokensCreated/TokensCreated";
 import MyTokens from "./models/MyTokens/MyTokens";
-import AddToken from "./models/AddToken/AddToken";
 
 
 function App() {
@@ -19,8 +18,6 @@ function App() {
       <TokensCreated />
       <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
       <MyTokens />
-      <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
-      <AddToken />
       <Footer />
     </>
 

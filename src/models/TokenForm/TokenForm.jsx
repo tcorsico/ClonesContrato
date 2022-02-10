@@ -9,6 +9,8 @@ const TokenForm = () => {
     const [name, setName] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
     const [supply, setSupply] = React.useState(0);
+    const [decimals, setDecimals] = React.useState(18);
+    const [totalTokens, setTotalTokens] = React.useState(0)
     // Para mostrar la info
     const [newAddress, setNewAddress] = React.useState("");
     const [newName, setNewName] = React.useState("");
@@ -32,7 +34,7 @@ const TokenForm = () => {
                     const provider = new ethers.providers.Web3Provider(window.ethereum);
                     const signer = provider.getSigner();
                     let contract = new ethers.Contract(factory_address, factory_abi, signer);
-                    
+
                     // Obtengo el precio de tarifa
                     const gweiValue = (await contract.tarifa());
                     let etherValue = ethers.utils.formatEther(gweiValue);
@@ -60,7 +62,6 @@ const TokenForm = () => {
             setNewAddress(address);
             setNewName(name);
             setSuccess(true);
-            // TODO: ARREGLAR AUTOIMPORT A METAMATSK
             addToMetamask(address, symbol);
         })
     }
@@ -82,41 +83,46 @@ const TokenForm = () => {
             console.error(error);
         }
     }
-    const addToMetamask = async ({ address, symbol }) => {
+    const addToMetamask = async (addr, sym) => {
+        console.log(`Comienza la funcion Add to Metamask --`)
         try {
             const { ethereum } = window;
             if (ethereum) {
-                // ADD TO METAMASK
-                window.ethereum.request({
-                    method: 'wallet_watchAsset',
-                    params: {
-                        type: 'ERC20',
-                        options: {
-                            address: address,
-                            symbol: symbol,
-                            decimals: 18,
+                // Add token
+                ethereum
+                    .request({
+                        method: 'wallet_watchAsset',
+                        params: {
+                            type: 'ERC20',
+                            options: {
+                                address: addr,
+                                symbol: sym,
+                                decimals: 18,
+                            },
                         },
-                    },
-                })
+                    })
                     .then((success) => {
                         if (success) {
-                            console.log('FOO successfully added to wallet!')
+                            console.log('Token successfully added to wallet!');
                         } else {
-                            throw new Error('Something went wrong.')
+                            throw new Error('Something went wrong.');
                         }
                     })
-                    .catch(console.error)
-            } else {
-                console.error(`Salto un error`)
+                    .catch(console.error);
             }
-        }
-        catch (error) {
-            console.error(error);
+        } catch (error) {
+            console.log(error);
         }
     }
+    // useEffect
     React.useEffect(() => {
         getFee();
     }, [])
+    React.useEffect(() => {
+        let total = supply / (10 ** decimals);
+        setTotalTokens(total);
+    }, [decimals, supply])
+
     return (
         <>
             <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, margin: '1rem', padding: '1rem', borderStyle: 'solid', borderWidth: '1px', borderColor: 'rgba(0, 0, 0, 0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={(e) => createNewToken(e)}>
@@ -130,10 +136,18 @@ const TokenForm = () => {
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="supply" style={{ display: 'none' }}>Supply:</label>
-                    <TextField type="number" id="supply" label="INITIAL SUPPLY" name="supply" variant="standard" onChange={(e) => setSupply(e.target.value * 10 ** 18)} required />
+                    <TextField type="number" id="supply" label="INITIAL SUPPLY" name="supply" variant="standard" onChange={(e) => setSupply(e.target.value)} required />
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="decimals" style={{ display: 'none' }}>decimals:</label>
+                    <TextField type="number" id="decimals" label="DECIMALS" name="decimals" variant="standard" defaultValue={18} onChange={(e) => setDecimals(e.target.value)} required />
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="total-tokens" style={{ display: 'none' }}>total tokens:</label>
+                    <TextField type="number" id="total-tokens" label="TOTAL ENTERA DE TOKENS" name="total-tokens" variant="standard" value={totalTokens} InputProps={{ readOnly: true }} />
                 </div>
                 <Button variant="contained" type="submit" sx={{ marginTop: '1rem' }} onClick={(e) => createNewToken(e)}>CREAR TOKEN</Button>
-                <Typography variant="overline" sx={{ marginTop: '1rem' }}>*El fee es de {tarifa} ether</Typography>
+                <Typography variant="overline" sx={{ marginTop: '1rem' }}>*El fee es de {tarifa} ether + gas</Typography>
             </Box>
             {error && <Alert severity="error">Todos los espacios deben ser completados!</Alert>}
             {success && <Alert severity="success">Tu Token {newName} se deployo en <a href={link + newAddress} target="_blank" rel="noreferrer">{link + newAddress}</a></Alert>}

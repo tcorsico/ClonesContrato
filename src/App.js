@@ -1,24 +1,28 @@
 import * as React from "react";
 import './App.css';
-import { ThemeProvider, Button, Divider } from "@mui/material";
-import customTheme from "./Theme/Theme"
+import { Divider } from "@mui/material";
 import Navbar from './models/Navbar/Navbar';
 import Footer from './models/Footer/Footer';
 import TokenForm from "./models/TokenForm/TokenForm";
-import TokensTable from "./components/TokensTable/TokensTable";
+import TokensCreated from "./models/TokensCreated/TokensCreated";
+import MyTokens from "./models/MyTokens/MyTokens";
+import AddToken from "./models/AddToken/AddToken";
 
 
 function App() {
-  const [open, setOpen] = React.useState(false);
+
   return (
-    <ThemeProvider theme={customTheme}>
+    <>
       <Navbar />
       <TokenForm />
       <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
-      <Button variant="contained" onClick={() => setOpen((prevState) => !prevState)}>{open ? "Esconder tabla" : "Mostrar tabla de Tokens creados"}</Button>
-      {open && <TokensTable />}
+      <TokensCreated />
+      <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
+      <MyTokens />
+      <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
+      <AddToken />
       <Footer />
-    </ThemeProvider>
+    </>
 
   );
 }

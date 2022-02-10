@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ethers } from 'ethers';
-import { factory_address, factory_abi } from '../../contract/contract';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,21 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const TokensTable = () => {
-    const [tokensCreated, setTokensCreated] = React.useState([{}]);
-    React.useEffect(() => {
-        // Instancio el contrato
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        let contract = new ethers.Contract(factory_address, factory_abi, signer);
-        // Search historic events
-        let filterTo = contract.filters.nuevoContrato();
-        contract.queryFilter(filterTo)
-            .then((event) => setTokensCreated(event))
-            .catch(() => console.error(`Flasho`))
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+const TokensTable = ({ tokens }) => {
+    
     return (
         <TableContainer component={Paper} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Table sx={{ minWidth: 650, maxWidth: '75%', margin: '1rem 1rem 3rem 1rem', border: 'solid rgba(0, 0, 0, 0.12) 1px' }} aria-label="simple table">
@@ -37,7 +23,7 @@ const TokensTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {tokensCreated.length > 1 && tokensCreated.map((token, index) => (
+                    {tokens.length > 0 && tokens.map((token, index) => (
                         <TableRow
                             key={index}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

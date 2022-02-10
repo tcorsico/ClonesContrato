@@ -10,7 +10,8 @@ const TokenForm = () => {
     const [symbol, setSymbol] = React.useState("");
     const [supply, setSupply] = React.useState(0);
     const [decimals, setDecimals] = React.useState(18);
-    const [totalTokens, setTotalTokens] = React.useState(0)
+    const [totalTokens, setTotalTokens] = React.useState(0);
+
     // Para mostrar la info
     const [newAddress, setNewAddress] = React.useState("");
     const [newName, setNewName] = React.useState("");
@@ -18,6 +19,7 @@ const TokenForm = () => {
     const [success, setSuccess] = React.useState(false);
     const [tarifa, setTarifa] = React.useState("0.009781055");
     const link = "https://rinkeby.etherscan.io/address/";
+
     // FUNCTIONS
     const createNewToken = async (e) => {
         e.preventDefault();
@@ -53,6 +55,7 @@ const TokenForm = () => {
             }
         }
     }
+
     const checkEvents = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -65,6 +68,7 @@ const TokenForm = () => {
             addToMetamask(address, symbol);
         })
     }
+
     const getFee = async () => {
         try {
             const { ethereum } = window;
@@ -83,6 +87,7 @@ const TokenForm = () => {
             console.error(error);
         }
     }
+
     const addToMetamask = async (addr, sym) => {
         console.log(`Comienza la funcion Add to Metamask --`)
         try {
@@ -114,6 +119,7 @@ const TokenForm = () => {
             console.log(error);
         }
     }
+    
     // useEffect
     React.useEffect(() => {
         getFee();
@@ -125,7 +131,7 @@ const TokenForm = () => {
 
     return (
         <>
-            <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, margin: '1rem', padding: '1rem', borderStyle: 'solid', borderWidth: '1px', borderColor: 'rgba(0, 0, 0, 0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={(e) => createNewToken(e)}>
+            <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '50ch' }, margin: '3rem', padding: '1rem', borderStyle: 'solid', borderWidth: '1px', borderColor: 'rgba(0, 0, 0, 0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={(e) => createNewToken(e)}>
                 <div className="form-inputs">
                     <label htmlFor="name" style={{ display: 'none' }}>Name:</label>
                     <TextField type="text" id="name" label="NAME" name="name" variant="standard" onChange={(e) => setName(e.target.value)} required />

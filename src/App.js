@@ -1,25 +1,26 @@
 import * as React from "react";
 import './App.css';
-import { Divider } from "@mui/material";
-import Navbar from './models/Navbar/Navbar';
-import Footer from './models/Footer/Footer';
-import TokenForm from "./models/TokenForm/TokenForm";
-import TokensCreated from "./models/TokensCreated/TokensCreated";
-import MyTokens from "./models/MyTokens/MyTokens";
-
+// Router-dom
+import Layout from "./layout/Layout"
+import { Routes, Route } from 'react-router-dom';
+// Pages
+import Admin from './pages/Admin';
+import Home from './pages/Home';
+import TokenAdministrator from './pages/TokenAdministrator';
+import RequireAuth from './pages/RequireAuth';
 
 function App() {
-
   return (
-    <>
-      <Navbar />
-      <TokenForm />
-      <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
-      <TokensCreated />
-      <Divider sx={{ margin: '2rem 0', width: '100%', height: '1px' }} />
-      <MyTokens />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route element={<RequireAuth />}>
+          <Route path="admin" element={<Admin />} />
+        </Route>
+        <Route path="my-tokens" element={<TokenAdministrator />} />
+        <Route path="*" element={<><h1>404</h1><h3>Not found</h3></>} />
+      </Route>
+    </Routes>
 
   );
 }

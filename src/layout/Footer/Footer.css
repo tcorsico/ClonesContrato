@@ -58,6 +58,11 @@
     padding-bottom: 0.3rem;
 }
 
+.footer-link {
+    color: white;
+    text-decoration: underline;
+}
+
 .fab{
     padding: 1rem;
     color: white;

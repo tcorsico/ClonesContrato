@@ -7,9 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Tooltip from '@mui/material/Tooltip';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { IconButton } from '@mui/material';
 
 const TokensTable = ({ tokens }) => {
-    
+
     return (
         <TableContainer component={Paper} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Table sx={{ minWidth: 650, maxWidth: '75%', margin: '1rem 1rem 3rem 1rem', border: 'solid rgba(0, 0, 0, 0.12) 1px' }} aria-label="simple table">
@@ -17,8 +20,8 @@ const TokensTable = ({ tokens }) => {
                     <TableRow>
                         <TableCell>Token Name</TableCell>
                         <TableCell align="right">Symbol</TableCell>
-                        <TableCell align="right">Address</TableCell>
-                        <TableCell align="right">Owner</TableCell>
+                        <TableCell align="right" sx={{ paddingRight: '40px' }}>Contract Address</TableCell>
+                        <TableCell align="right" sx={{ paddingRight: '40px' }}>Owner</TableCell>
                         <TableCell align="right">Initial Supply</TableCell>
                     </TableRow>
                 </TableHead>
@@ -32,8 +35,8 @@ const TokensTable = ({ tokens }) => {
                                 {token.args._name}
                             </TableCell>
                             <TableCell align="right">{token.args._symbol}</TableCell>
-                            <TableCell align="right">{token.args._nuevoToken}</TableCell>
-                            <TableCell align="right">{token.args._owner}</TableCell>
+                            <TableCell align="right">{token.args._nuevoToken.slice(0, 15)}... <Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._nuevoToken)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
+                            <TableCell align="right">{token.args._owner.slice(0, 15)}... <Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._owner)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
                             <TableCell align="right">{ethers.utils.formatEther((token.args._supply).toString())}</TableCell>
                         </TableRow>
                     ))}

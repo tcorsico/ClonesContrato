@@ -1,24 +1,24 @@
 import * as React from 'react';
 import "./Footer.css";
-import { Typography, Link, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import backLogo from "../../assets/logodaapsblanco.svg";
 import { Container } from "react-bootstrap";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="text.secondary">
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// function Copyright() {
+//     return (
+//         <Typography variant="body2" color="text.secondary">
+//             {'Copyright © '}
+//             <Link color="inherit" href="https://mui.com/">
+//                 Your Website
+//             </Link>{' '}
+//             {new Date().getFullYear()}
+//             {'.'}
+//         </Typography>
+//     );
+// }
 
 export default function Footer() {
     return (
@@ -42,7 +42,7 @@ export default function Footer() {
                         <p className='footer-text'>Martinez(1640) Buenos Aires Argentina</p>
                         <p className='footer-text'>Ventas@actionfintech.com</p>
                         <p className='footer-text'>Tel. +54 11-7079-1777</p>
-                        <a href="https://dappsfactory.io" target="_blank" rel="noreferrer">dappsfactory.io</a>
+                        <a href="https://dappsfactory.io" target="_blank" rel="noreferrer" className='footer-link'>dappsfactory.io</a>
                     </Grid>
                     <div className='divider' />
                     <Grid item={true} xs={4} sm={4} md={4} lg={4} className='footer-div tercero'>

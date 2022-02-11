@@ -1,15 +1,7 @@
 import * as React from 'react';
 import { ethers } from 'ethers';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { IconButton } from '@mui/material';
 
 const TokensTable = ({ tokens }) => {
 
@@ -35,8 +27,8 @@ const TokensTable = ({ tokens }) => {
                                 {token.args._name}
                             </TableCell>
                             <TableCell align="right">{token.args._symbol}</TableCell>
-                            <TableCell align="right">{token.args._nuevoToken.slice(0, 15)}... <Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._nuevoToken)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
-                            <TableCell align="right">{token.args._owner.slice(0, 15)}... <Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._owner)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
+                            <TableCell align="right">{token.args._nuevoToken.slice(0, 8)}...{token.args._nuevoToken.slice(35)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._nuevoToken)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
+                            <TableCell align="right">{token.args._owner.slice(0, 8)}...{token.args._owner.slice(35)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._owner)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
                             <TableCell align="right">{ethers.utils.formatEther((token.args._supply).toString())}</TableCell>
                         </TableRow>
                     ))}

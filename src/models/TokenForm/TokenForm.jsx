@@ -67,8 +67,10 @@ const TokenForm = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         let contract = new ethers.Contract(factory_address, factory_abi, signer);
+        const myAddress = await signer.getAddress();
+        let filter = contract.filters.nuevoContrato(null, symbol, null, myAddress);
         // EVENTO
-        contract.on("nuevoContrato", (address, symbol, name, owner) => {
+        contract.on(filter, (address, symbol, name, owner) => {
             setNewAddress(address);
             setNewName(name);
             setSuccess(true);

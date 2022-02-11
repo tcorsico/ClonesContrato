@@ -43,6 +43,12 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    window.ethereum.on('accountsChanged', async () => {
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        setCurrentAccount(accounts[0]);
+        console.log(`Se cambio la cuenta a: ${accounts[0]}`)
+    });
+
     return (
         <UserContext.Provider value={{ currentAccount, adminAddress, connect, checkWallet }}>
             {children}

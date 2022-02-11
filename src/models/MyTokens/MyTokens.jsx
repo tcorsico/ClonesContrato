@@ -27,7 +27,7 @@ const MyTokens = () => {
                 let filterTo = contract.filters.nuevoContrato(null, null, null, myAddress);
                 contract.queryFilter(filterTo)
                     .then((event) => setMyTokens(event))
-                    .catch(() => console.error(`Flasho`))
+                    .catch(() => console.error(`Flasheo`))
             }
         } catch (error) {
             console.error(error);

@@ -2,7 +2,9 @@ import * as React from 'react';
 import "./TokenForm.css";
 import { ethers } from "ethers";
 import { factory_address, factory_abi } from '../../contract/contract';
-import { Alert, Button, Box, TextField, Typography } from "@mui/material";
+import { Alert, Button, Box, IconButton, TextField, Typography, styled } from "@mui/material";
+import { PhotoCamera } from '@mui/icons-material';
+import { create } from 'ipfs-http-client';
 
 const TokenForm = () => {
     // Variables
@@ -11,6 +13,11 @@ const TokenForm = () => {
     const [supply, setSupply] = React.useState(0);
     const [decimals, setDecimals] = React.useState(18);
     const [totalTokens, setTotalTokens] = React.useState(0);
+    const [fileUrl, updateFileUrl] = React.useState(``)
+    const Input = styled('input')({
+        display: 'none',
+    });
+    const client = create('https://ipfs.infura.io:5001/api/v0')
 
     // Para mostrar la info
     const [newAddress, setNewAddress] = React.useState("");
@@ -103,6 +110,7 @@ const TokenForm = () => {
                                 address: addr,
                                 symbol: sym,
                                 decimals: 18,
+                                image: fileUrl,
                             },
                         },
                     })
@@ -119,7 +127,18 @@ const TokenForm = () => {
             console.log(error);
         }
     }
-    
+
+    async function onChange(e) {
+        const file = e.target.files[0]
+        try {
+            const added = await client.add(file)
+            const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+            updateFileUrl(url)
+        } catch (error) {
+            console.log('Error uploading file: ', error)
+        }
+    }
+
     // useEffect
     React.useEffect(() => {
         getFee();
@@ -152,6 +171,21 @@ const TokenForm = () => {
                     <label htmlFor="total-tokens" style={{ display: 'none' }}>total tokens:</label>
                     <TextField type="number" id="total-tokens" label="TOTAL ENTERA DE TOKENS" name="total-tokens" variant="standard" value={totalTokens} InputProps={{ readOnly: true }} />
                 </div>
+                <label htmlFor="contained-button-file">
+                    <Input accept="image/" id="contained-button-file" multiple type="file" onChange={onChange} />
+                    <Button variant="contained" component="span">
+                        Upload Icon
+                    </Button>
+                </label>
+                <label htmlFor="icon-button-file">
+                    <Input accept="image/" id="icon-button-file" type="file" onChange={onChange} />
+                    <IconButton color="primary" aria-label="upload picture" component="span">
+                        <PhotoCamera />
+                    </IconButton>
+                </label>
+
+
+                {fileUrl && <img src={fileUrl} width="32px" height="32px" alt="imagen" />}
                 <Button variant="contained" type="submit" sx={{ marginTop: '1rem' }} onClick={(e) => createNewToken(e)}>CREAR TOKEN</Button>
                 <Typography variant="overline" sx={{ marginTop: '1rem' }}>*El fee es de {tarifa} ether + gas</Typography>
             </Box>

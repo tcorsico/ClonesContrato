@@ -46,9 +46,9 @@ export default function Footer() {
                     </Grid>
                     <div className='divider' />
                     <Grid item={true} xs={4} sm={4} md={4} lg={4} className='footer-div tercero'>
-                        <a href="https://www.instagram.com/dappsfactory/" target="_blank" rel="noreferrer"><InstagramIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
-                        <a href="https://www.facebook.com/DAppsFactory" target="_blank" rel="noreferrer"><FacebookIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
-                        <a href="https://twitter.com/DApp_Factory" target="_blank" rel="noreferrer"><TwitterIcon sx={{ color: "white", fontSize: '3rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
+                        <a href="https://www.instagram.com/dappsfactory/" target="_blank" rel="noreferrer"><InstagramIcon sx={{ color: "white", fontSize: '2.5rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
+                        <a href="https://www.facebook.com/DAppsFactory" target="_blank" rel="noreferrer"><FacebookIcon sx={{ color: "white", fontSize: '2.5rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
+                        <a href="https://twitter.com/DApp_Factory" target="_blank" rel="noreferrer"><TwitterIcon sx={{ color: "white", fontSize: '2.5rem', padding: '0 1rem', '&:hover': { color: '#8b79b3'} }} /></a>
                     </Grid>
                 </Grid>
             </Container>

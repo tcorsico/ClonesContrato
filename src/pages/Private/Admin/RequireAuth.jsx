@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../../../context/UserContext';
 
 const RequireAuth = () => {
     const { currentAccount, adminAddress } = useUser();

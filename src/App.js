@@ -4,10 +4,10 @@ import './App.css';
 import Layout from "./layout/Layout"
 import { Routes, Route } from 'react-router-dom';
 // Pages
-import Admin from './pages/Admin';
-import Home from './pages/Home';
-import TokenAdministrator from './pages/TokenAdministrator';
-import RequireAuth from './pages/RequireAuth';
+import Home from './pages/Public/Home';
+import Admin from './pages/Private/Admin/Admin';
+import RequireAuth from './pages/Private/Admin/RequireAuth';
+import TokenAdministrator from './pages/Private/TokenAdministrator/TokenAdministrator';
 
 function App() {
   return (

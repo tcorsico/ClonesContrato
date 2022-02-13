@@ -12,7 +12,7 @@ const TokensTable = ({ tokens }) => {
                     <TableRow>
                         <TableCell>Token Name</TableCell>
                         <TableCell align="right">Symbol</TableCell>
-                        <TableCell align="right" sx={{ paddingRight: '40px' }}>Contract Address</TableCell>
+                        <TableCell align="right"ss>Contract Address</TableCell>
                         <TableCell align="right" sx={{ paddingRight: '40px' }}>Owner</TableCell>
                         <TableCell align="right">Initial Supply</TableCell>
                     </TableRow>
@@ -27,8 +27,8 @@ const TokensTable = ({ tokens }) => {
                                 {token.args._name}
                             </TableCell>
                             <TableCell align="right">{token.args._symbol}</TableCell>
-                            <TableCell align="right">{token.args._nuevoToken.slice(0, 8)}...{token.args._nuevoToken.slice(35)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._nuevoToken)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
-                            <TableCell align="right">{token.args._owner.slice(0, 8)}...{token.args._owner.slice(35)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._owner)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
+                            <TableCell align="right">{token.args._nuevoToken.slice(0, 5)}...{token.args._nuevoToken.slice(37)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._nuevoToken)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
+                            <TableCell align="right">{token.args._owner.slice(0, 5)}...{token.args._owner.slice(37)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._owner)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
                             <TableCell align="right">{ethers.utils.formatEther((token.args._supply).toString())}</TableCell>
                         </TableRow>
                     ))}

@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext'
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
+import ChainSelector from '../../components/ChainSelector/ChainSelector';
 
 const Navbar = () => {
     // Variables
     const { currentAccount, connect, checkWallet } = useUser();
-    const connectWallet = () => { connect(); }
-    const checkIfWalletIsConnected = () => { checkWallet(); }
+    const connectWallet = () => { connect() }
+    const checkIfWalletIsConnected = () => { checkWallet() }
 
     // UseEffect
     React.useEffect(() => {
@@ -26,12 +27,15 @@ const Navbar = () => {
                         ActionFintech
                     </Typography>
                 </Link>
-                <div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     {currentAccount === ""
                         ? <Button variant="contained" onClick={connectWallet}>Conectar Wallet</Button>
-                        : <Button variant="outlined" startIcon={<AccountCircle />}>
-                            {currentAccount.slice(0, 5)}...{currentAccount.slice(37)}
-                        </Button>
+                        : <>
+                            <Button variant="outlined" startIcon={<AccountCircle />} sx={{ height: '39px' }}>
+                                {currentAccount.slice(0, 5)}...{currentAccount.slice(37)}
+                            </Button>
+                            <ChainSelector />
+                        </>
                     }</div>
             </Toolbar>
         </AppBar >

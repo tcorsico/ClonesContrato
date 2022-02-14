@@ -8,7 +8,7 @@ import { AvaxLogo, PolygonLogo, BSCLogo, ETHLogo } from "./Logos";
 const menuItems = [
     {
         key: "0x1",
-        value: "Ethereum",
+        value: "Ethereum Mainnet",
         rpcurl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
         currencySymbol: "ETH",
         icon: <ETHLogo />,
@@ -64,7 +64,7 @@ const menuItems = [
     },
     {
         key: "0x89",
-        value: "Polygon",
+        value: "Polygon Mainnet",
         rpcurl: "https://polygon-rpc.com",
         currencySymbol: "MATIC",
         icon: <PolygonLogo />,
@@ -78,7 +78,7 @@ const menuItems = [
     },
     {
         key: "0xa86a",
-        value: "Avalanche",
+        value: "Avalanche Mainnet",
         rpcurl: "https://api.avax.network/ext/bc/C/rpc",
         currencySymbol: "AVAX",
         icon: <AvaxLogo />,

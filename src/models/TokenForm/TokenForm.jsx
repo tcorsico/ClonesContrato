@@ -2,22 +2,28 @@ import * as React from 'react';
 import "./TokenForm.css";
 import { ethers } from "ethers";
 import { factory_address, factory_abi } from '../../contract/contract';
-import { Alert, Button, Box, IconButton, TextField, Typography, styled } from "@mui/material";
+import { Alert, Button, Box, TextField, Typography, styled } from "@mui/material";
 import { PhotoCamera } from '@mui/icons-material';
 import { create } from 'ipfs-http-client';
+import HelpIcon from '../../components/HelpIcon/HelpIcon'
+import CustomBackdrop from '../../components/CustomBackdrop/CustomBackdrop'
+import { useUser } from '../../context/UserContext'
+import ChainSelector from '../../components/ChainSelector/ChainSelector';
 
 const TokenForm = () => {
     // Variables
     const [name, setName] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
-    const [supply, setSupply] = React.useState(0);
+    const [supply, setSupply] = React.useState('');
     const [decimals, setDecimals] = React.useState(18);
-    const [totalTokens, setTotalTokens] = React.useState(0);
     const [fileUrl, updateFileUrl] = React.useState(``)
     const Input = styled('input')({
         display: 'none',
     });
-    const client = create('https://ipfs.infura.io:5001/api/v0')
+    const client = create('https://ipfs.infura.io:5001/api/v0');
+
+    //Loading spinner
+    const [loading, setLoading] = React.useState(false);
 
     // Para mostrar la info
     const [newAddress, setNewAddress] = React.useState("");
@@ -27,9 +33,14 @@ const TokenForm = () => {
     const [tarifa, setTarifa] = React.useState("0.009781055");
     const link = "https://rinkeby.etherscan.io/address/";
 
+    // UserContext
+    const { currentAccount, connect } = useUser();
+    const connectWallet = () => { connect() }
+
     // FUNCTIONS
     const createNewToken = async (e) => {
         e.preventDefault();
+        connectWallet();
         if (name === "" || symbol === "") {
             setError(true);
             return;
@@ -48,11 +59,13 @@ const TokenForm = () => {
                     const gweiValue = (await contract.tarifa());
                     let etherValue = ethers.utils.formatEther(gweiValue);
                     setTarifa(Number(etherValue));
+                    ////////////////////////////////////
                     const sendValue = ethers.utils.parseUnits(etherValue, "ether");
                     console.log(`Comienza la creacion del Token--`);
-                    const supplyDecimal = supply.toString();
+                    ////////////////////////////////////
                     // Ejecuto la funcion clonar
-                    await contract.clonar(name, symbol, supplyDecimal, { value: sendValue });
+                    await contract.clonar(name, symbol, supply, { value: sendValue });
+                    setLoading(true);
                     await checkEvents();
                 } else {
                     console.log("No hay conexion a Metamask");
@@ -68,13 +81,14 @@ const TokenForm = () => {
         const signer = provider.getSigner();
         let contract = new ethers.Contract(factory_address, factory_abi, signer);
         const myAddress = await signer.getAddress();
-        let filter = contract.filters.nuevoContrato(null, symbol, null, myAddress);
+        let filter = contract.filters.nuevoContrato(null, null, null, myAddress);
         // EVENTO
         contract.on(filter, (address, symbol, name, owner) => {
             setNewAddress(address);
             setNewName(name);
             setSuccess(true);
             addToMetamask(address, symbol);
+            setLoading(false);
         })
     }
 
@@ -145,40 +159,28 @@ const TokenForm = () => {
     React.useEffect(() => {
         getFee();
     }, [])
-    React.useEffect(() => {
-        let total = supply / (10 ** decimals);
-        setTotalTokens(total);
-    }, [decimals, supply])
 
     return (
         <>
+            <CustomBackdrop loading={loading} />
             <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '50ch' }, margin: '3rem', padding: '1rem', borderStyle: 'solid', borderWidth: '1px', borderColor: 'rgba(0, 0, 0, 0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={(e) => createNewToken(e)}>
+                {/* {currentAccount !== "" && <ChainSelector />} */}
                 <div className="form-inputs">
                     <label htmlFor="name" style={{ display: 'none' }}>Name:</label>
-                    <TextField type="text" id="name" label="NAME" name="name" variant="standard" onChange={(e) => setName(e.target.value)} required />
+                    <TextField type="text" id="name" label="NAME" name="name" variant="standard" onChange={(e) => setName(e.target.value)} InputProps={{ endAdornment: (<HelpIcon />) }} required />
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="symbol" style={{ display: 'none' }}>Symbol:</label>
-                    <TextField type="text" id="symbol" label="SYMBOL" name="symbol" variant="standard" onChange={(e) => setSymbol(e.target.value)} required />
+                    <TextField type="text" id="symbol" label="SYMBOL" name="symbol" variant="standard" onChange={(e) => setSymbol(e.target.value)} InputProps={{ endAdornment: (<HelpIcon />) }} required />
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="supply" style={{ display: 'none' }}>Supply:</label>
-                    <TextField type="number" id="supply" label="INITIAL SUPPLY" name="supply" variant="standard" onChange={(e) => setSupply(e.target.value)} required />
+                    <TextField type="number" id="supply" label="INITIAL SUPPLY" name="supply" variant="standard" onChange={(e) => setSupply((e.target.value).toString()+((10 ** decimals).toString()).slice(1))} InputProps={{ endAdornment: (<HelpIcon />) }} required />
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="decimals" style={{ display: 'none' }}>decimals:</label>
-                    <TextField type="number" id="decimals" label="DECIMALS" name="decimals" variant="standard" defaultValue={18} onChange={(e) => setDecimals(e.target.value)} required />
+                    <TextField type="number" id="decimals" label="DECIMALS" name="decimals" variant="standard" defaultValue={18} onChange={(e) => setDecimals(e.target.value)} InputProps={{ endAdornment: (<HelpIcon />) }} required />
                 </div>
-                <div className="form-inputs">
-                    <label htmlFor="total-tokens" style={{ display: 'none' }}>total tokens:</label>
-                    <TextField type="number" id="total-tokens" label="TOTAL ENTERA DE TOKENS" name="total-tokens" variant="standard" value={totalTokens} InputProps={{ readOnly: true }} />
-                </div>
-                {/* <label htmlFor="icon-button-file">
-                    <Input accept="image/" id="icon-button-file" type="file" onChange={onChange} />
-                    <IconButton color="primary" aria-label="upload picture" component="span">
-                        <PhotoCamera />
-                    </IconButton>
-                </label> */}
                 <label htmlFor="contained-button-file">
                     <Input accept="image/" id="contained-button-file" multiple type="file" onChange={onChange} />
                     <Button variant="outlined" component="span" startIcon={<PhotoCamera />}>
@@ -186,13 +188,12 @@ const TokenForm = () => {
                     </Button>
                 </label>
 
-
                 {fileUrl && <img src={fileUrl} width="32px" height="32px" alt="imagen" />}
                 <Button variant="contained" type="submit" sx={{ marginTop: '1rem' }} onClick={(e) => createNewToken(e)}>CREAR TOKEN</Button>
                 <Typography variant="overline" sx={{ marginTop: '1rem' }}>*El fee es de {tarifa} ether + gas</Typography>
             </Box>
-            {error && <Alert severity="error">Todos los espacios deben ser completados!</Alert>}
-            {success && <Alert severity="success">Tu Token {newName} se deployo en <a href={link + newAddress} target="_blank" rel="noreferrer">{link + newAddress}</a></Alert>}
+            {error && <Alert sx={{ marginBottom: '2rem' }} severity="error">Todos los espacios deben ser completados!</Alert>}
+            {success && <Alert sx={{ marginBottom: '2rem' }} severity="success">Tu Token {newName} se deployo en <a href={link + newAddress} target="_blank" rel="noreferrer">{link + newAddress}</a></Alert>}
         </>);
 };
 

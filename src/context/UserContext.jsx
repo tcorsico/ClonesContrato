@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
         try {
             const { ethereum } = window;
             if (!ethereum) {
+                console.error(`Instala Metamask!`);
                 return;
             }
             const accounts = await ethereum.request({ method: 'eth_accounts' });

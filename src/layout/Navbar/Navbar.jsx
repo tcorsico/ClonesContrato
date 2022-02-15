@@ -36,7 +36,7 @@ const Navbar = () => {
                         : currentAccount === ""
                             ? <Button variant="contained" onClick={connectWallet}>Conectar Wallet</Button>
                             : <>
-                                <Button variant="outlined" startIcon={<AccountCircle />} sx={{ height: '39px' }}>
+                                <Button variant="outlined" startIcon={<AccountCircle />} sx={{ height: '39px', marginRight: '1rem'}}>
                                     {currentAccount.slice(0, 5)}...{currentAccount.slice(37)}
                                 </Button>
                                 <ChainSelector />

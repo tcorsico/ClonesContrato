@@ -10,7 +10,7 @@ const RequireAdminAuth = () => {
     React.useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, [500])
+        }, [300])
     }, [])
     if (loading) {
         return <div style={{ margin: 'auto', marginTop: '50px', width: '70%' }}>

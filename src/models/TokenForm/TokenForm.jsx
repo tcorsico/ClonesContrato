@@ -80,9 +80,9 @@ const TokenForm = () => {
         const signer = provider.getSigner();
         let contract = new ethers.Contract(factory_address, factory_abi, signer);
         const myAddress = await signer.getAddress();
-        let filter = contract.filters.newToken(null, symbol, null, myAddress, null, null);
+        let filter = contract.filters.newToken(null, null, null, myAddress, null, null);
         // EVENTO
-        contract.on(filter, (address, simbolo, name, owner, supply, decimals) => {
+        contract.on(filter, (address, symbol, name, owner, supply, decimals) => {
             setNewAddress(address);
             setNewName(name);
             setSuccess(true);

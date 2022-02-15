@@ -781,7 +781,7 @@ export const factory_abi = [
 				"type": "address"
 			},
 			{
-				"indexed": true,
+				"indexed": false,
 				"internalType": "string",
 				"name": "_symbol",
 				"type": "string"
@@ -999,5 +999,5 @@ export const factory_abi = [
 ]
 
 
-export const mitoken_address = "0x29f4E189929c59820BbC79cD6Cc589BF25e24451"
-export const factory_address = "0xd07d03Fa086b00923065d5d43a91fFBcC16Dd2c4"
+export const mitoken_address = "0x2f2E9BD5B4C2BF6C6b974Cd300C2E71FA1F85B44"
+export const factory_address = "0x2Fac6567ae47Dc5674A96cC19ACb29B6fda050ef"

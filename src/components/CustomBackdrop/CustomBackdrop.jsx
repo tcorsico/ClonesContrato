@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Backdrop, CircularProgress, Typography } from '@mui/material';
 
 export default function SimpleBackdrop({ loading }) {
   const [open, setOpen] = React.useState(loading);
@@ -15,10 +14,11 @@ export default function SimpleBackdrop({ loading }) {
   return (
     <div>
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1, display: 'flex', flexDirection: 'column' }}
         open={open}
       >
-        <CircularProgress color="inherit" />
+        <CircularProgress color="inherit" sx={{ marginBottom: '1.5rem' }} />
+        <Typography variant="h6" component="h3">Creating your new token...</Typography>
       </Backdrop>
     </div>
   );

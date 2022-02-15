@@ -1,8 +1,12 @@
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-    padding: 7px 14px !important;
-    padding-right: 32px !important;
-    width: 150px !important;
-  }
-  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border-color: transparent !important;
-  }
+  padding: 7px 14px !important;
+  padding-right: 32px !important;
+  width: 150px !important;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: transparent !important;
+}
+
+.css-1wvjsdj-MuiInputBase-root-MuiOutlinedInput-root:hover {
+  border: 1px solid #663dbd;
+}

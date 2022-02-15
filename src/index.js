@@ -6,15 +6,18 @@ import { ThemeProvider } from "@mui/material";
 import customTheme from "./Theme/Theme"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from './context/UserContext';
+import { NetworkProvider } from './context/NetworkContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={customTheme}>
       <Router>
         <UserProvider>
-          <Routes>
-            <Route path="/*" element={<App />} />
-          </Routes>
+          <NetworkProvider>
+            <Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </NetworkProvider>
         </UserProvider>
       </Router>
     </ThemeProvider>

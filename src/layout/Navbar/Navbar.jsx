@@ -2,9 +2,11 @@ import * as React from 'react';
 import "./Navbar.css";
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext'
-import { AppBar, Button, Toolbar, Typography, Skeleton } from "@mui/material";
+import { AppBar, Button, Toolbar, Skeleton } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import ChainSelector from '../../components/ChainSelector/ChainSelector';
+import backLogo from "../../assets/logodaaps.svg";
+
 
 const Navbar = () => {
     // Variables
@@ -26,10 +28,8 @@ const Navbar = () => {
     return (
         <AppBar position="static" sx={{ marginBottom: '1rem', backgroundColor: 'white', color: '#663dbd' }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', margin: '0 5%' }}>
-                <Link to={`/`}>
-                    <Typography variant="h5" component="h1" sx={{ flexGrow: 1, maxWidth: '200px' }}>
-                        ActionFintech
-                    </Typography>
+                <Link to={`/`} style={{ marginTop: '.5rem', marginBottom: '.5rem' }}>
+                    <img id="layout-header-logo" src={backLogo} alt="logo-action-fintech" width="150px" />
                 </Link>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     {loading ? <Skeleton width={175} height={35} animation="wave" />

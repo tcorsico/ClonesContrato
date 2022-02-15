@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import './ChainSelector.css'
-import { ethers } from 'ethers';
+import { useNetwork } from '../../context/NetworkContext';
 import { MenuItem, Select } from '@mui/material';
 import { AvaxLogo, PolygonLogo, BSCLogo, ETHLogo } from "./Logos";
 
@@ -10,13 +10,6 @@ const menuItems = [
         key: "0x1",
         value: "Ethereum Mainnet",
         rpcurl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
-        currencySymbol: "ETH",
-        icon: <ETHLogo />,
-    },
-    {
-        key: "0x539",
-        value: "Local Chain",
-        rpcurl: "",
         currencySymbol: "ETH",
         icon: <ETHLogo />,
     },
@@ -93,69 +86,26 @@ const menuItems = [
 ];
 
 const ChainSelector = () => {
-    // VARIABLES
-    const [currentNetwork, setCurrentNetwork] = React.useState('');
-
-    //CAMBIAR NETWORKKK
-    const switchNetwork = async (e) => {
-        const network = menuItems.filter(menuItem => menuItem.value === e.target.value);
-        try {
-            await window.ethereum.request({
-                "jsonrpc": "2.0",
-                "method": "wallet_switchEthereumChain",
-                "params": [
-                    {
-                        "chainId": network[0].key,
-                    }
-                ]
-
-            })
-        } catch (e) {
-            if (e.code === 4902) {
-                await window.ethereum.request({
-                    "jsonrpc": "2.0",
-                    "method": "wallet_addEthereumChain",
-                    "params": [
-                        {
-                            "chainName": network[0].value,
-                            "chainId": network[0].key,
-                            "rpcUrls": [network[0].rpcurl],
-                            "nativeCurrency": {
-                                "name": "string",
-                                "symbol": network[0].currencySymbol,
-                                "decimals": 18,
-                            },
-                        }
-                    ]
-
-                })
-            }
-        }
-        setCurrentNetwork(e.target.value)
-    }
-    const getNetwork = async () => {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const network = await provider.getNetwork();
-        const newNetwork = menuItems.filter(menuItem => menuItem.key === `0x${network.chainId}`);
-        setCurrentNetwork(newNetwork[0].value);
-    }
+    const { currentNetwork, getNetwork, switchNetwork } = useNetwork();
+    const get = async () => getNetwork();
+    const switchNet = async (e) => switchNetwork(e);
 
     // UseEffect
     React.useEffect(() => {
-        getNetwork();
+        get();
     }, [])
 
     return (
         <Select
             value={currentNetwork}
-            onChange={(e) => switchNetwork(e)}
+            onChange={(e) => switchNet(e)}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
-            sx={{ marginLeft: '1rem', border: '1px solid rgba(102, 61, 189, 0.5)', color: 'inherit', fontWeight: '600' }}
+            sx={{ marginLeft: '1rem', border: '1px solid rgba(102, 61, 189, 0.5)', fontWeight: '600', color: '#663dbd' }}
         >
             {menuItems.map((item) => (
-                <MenuItem key={item.key} value={item.value}>
-                    <span style={{ marginLeft: "5px" }}>{item.value}</span>
+                <MenuItem key={item.key} value={item.value} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <span style={{ paddingLeft: '10px' }}>{item.value}</span>
                 </MenuItem>
             ))}
         </Select>

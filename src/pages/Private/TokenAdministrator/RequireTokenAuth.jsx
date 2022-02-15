@@ -22,8 +22,8 @@ const RequireTokenAuth = () => {
                 const provider = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = provider.getSigner();
                 let contract = new ethers.Contract(factory_address, factory_abi, signer);
-                // Busco en los eventos nuevoContrato solo los tokens que deployo myAddress
-                let filterTo = contract.filters.nuevoContrato(tokenId);
+                // Busco en los eventos newToken solo los tokens que deployo myAddress
+                let filterTo = contract.filters.newToken(tokenId);
                 contract.queryFilter(filterTo)
                     .then((event) => setTokenOwner(event[0].args._owner))
                     .catch(() => console.error(`Flasheo`))
@@ -37,16 +37,16 @@ const RequireTokenAuth = () => {
     React.useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, [300]);
+        }, [500]);
         getTokenOwner();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (loading) {
         return <div style={{ margin: 'auto', marginTop: '50px', width: '70%' }}>
-            <Skeleton animation="wave" width={'100%'} />
-            <Skeleton animation="wave" width={'100%'} />
-            <Skeleton animation="wave" width={'100%'} />
+            <Skeleton animation="wave" width={'100%'} height={35} />
+            <Skeleton animation="wave" width={'100%'} height={35} />
+            <Skeleton animation="wave" width={'100%'} height={35} />
         </div>
     } else {
         if (currentAccount.toLowerCase() === tokenOwner.toLowerCase()) {

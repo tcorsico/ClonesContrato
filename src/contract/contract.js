@@ -1,9 +1,5 @@
+// TOKEN ABI
 export const mitoken_abi = [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
 	{
 		"anonymous": false,
 		"inputs": [
@@ -49,30 +45,6 @@ export const mitoken_abi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -86,152 +58,17 @@ export const mitoken_abi = [
 		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "subtractedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "decreaseAllowance",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "role",
-				"type": "bytes32"
-			},
-			{
+				"indexed": false,
 				"internalType": "address",
 				"name": "account",
 				"type": "address"
 			}
 		],
-		"name": "grantRole",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "addedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "increaseAllowance",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_supply",
-				"type": "uint256"
-			}
-		],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "mint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "role",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "renounceRole",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "role",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "revokeRole",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "Paused",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -309,30 +146,6 @@ export const mitoken_abi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -358,33 +171,17 @@ export const mitoken_abi = [
 		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"internalType": "address",
-				"name": "sender",
+				"name": "account",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
 			}
 		],
-		"name": "transferFrom",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "Unpaused",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -400,34 +197,55 @@ export const mitoken_abi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "DEFAULT_ADMIN_ROLE",
+		"outputs": [
 			{
-				"internalType": "address",
-				"name": "newImplementation",
-				"type": "address"
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
 			}
 		],
-		"name": "upgradeTo",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "MINTER_ROLE",
+		"outputs": [
 			{
-				"internalType": "address",
-				"name": "newImplementation",
-				"type": "address"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
 			}
 		],
-		"name": "upgradeToAndCall",
-		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "PAUSER_ROLE",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "UPGRADER_ROLE",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -458,6 +276,30 @@ export const mitoken_abi = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "account",
 				"type": "address"
 			}
@@ -474,6 +316,37 @@ export const mitoken_abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "burn",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "burnFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "decimals",
 		"outputs": [
@@ -487,16 +360,27 @@ export const mitoken_abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "DEFAULT_ADMIN_ROLE",
-		"outputs": [
+		"inputs": [
 			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "subtractedValue",
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -531,6 +415,24 @@ export const mitoken_abi = [
 				"type": "address"
 			}
 		],
+		"name": "grantRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
 		"name": "hasRole",
 		"outputs": [
 			{
@@ -543,16 +445,78 @@ export const mitoken_abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "MINTER_ROLE",
-		"outputs": [
+		"inputs": [
 			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_initialSupply",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_decimals",
+				"type": "uint8"
+			}
+		],
+		"name": "initialize",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -566,6 +530,75 @@ export const mitoken_abi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "paused",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "proxiableUUID",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "renounceRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "revokeRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -614,37 +647,61 @@ export const mitoken_abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "UPGRADER_ROLE",
-		"outputs": [
+		"inputs": [
 			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-
-export const factory_abi = [
-	{
-		"inputs": [],
-		"name": "attack",
-		"outputs": [],
-		"stateMutability": "payable",
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_nuevoContrato",
+				"name": "from",
 				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
 			}
 		],
-		"name": "cambiarContratoAClonar",
+		"name": "transferFrom",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "unpause",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -652,26 +709,38 @@ export const factory_abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_supply",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "newImplementation",
+				"type": "address"
 			}
 		],
-		"name": "clonar",
+		"name": "upgradeTo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newImplementation",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "upgradeToAndCall",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
-	},
+	}
+]
+
+// FACTORY ABI
+export const factory_abi = [
 	{
 		"inputs": [
 			{
@@ -706,32 +775,13 @@ export const factory_abi = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "_totalEnviado",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "_receiver",
-				"type": "address"
-			}
-		],
-		"name": "enviado",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
 				"indexed": true,
 				"internalType": "address",
-				"name": "_nuevoToken",
+				"name": "_tokenAddress",
 				"type": "address"
 			},
 			{
-				"indexed": false,
+				"indexed": true,
 				"internalType": "string",
 				"name": "_symbol",
 				"type": "string"
@@ -751,62 +801,65 @@ export const factory_abi = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "_supply",
+				"name": "_initialSupply",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"internalType": "uint256",
-				"name": "_timeStamp",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "_value",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "_refund",
-				"type": "uint256"
+				"internalType": "uint8",
+				"name": "_decimals",
+				"type": "uint8"
 			}
 		],
-		"name": "nuevoContrato",
+		"name": "newToken",
 		"type": "event"
 	},
 	{
 		"inputs": [],
-		"name": "renounceOwnership",
+		"name": "attack",
 		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_tarifa",
-				"type": "uint256"
-			}
-		],
-		"name": "setTarifa",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "newOwner",
+				"name": "_newContract",
 				"type": "address"
 			}
 		],
-		"name": "transferOwnership",
+		"name": "changeImplementation",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_supply",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_decimals",
+				"type": "uint8"
+			}
+		],
+		"name": "clonar",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -826,37 +879,32 @@ export const factory_abi = [
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "_contract",
+				"name": "tokenAddress",
 				"type": "address"
 			},
 			{
 				"internalType": "string",
-				"name": "_name",
+				"name": "tokenName",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
-				"name": "_symbol",
+				"name": "tokenSymbol",
 				"type": "string"
 			},
 			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
-				"name": "_supply",
+				"name": "initialSupply",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_timeStamp",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_value",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_refund",
+				"name": "timeCreated",
 				"type": "uint256"
 			}
 		],
@@ -865,7 +913,20 @@ export const factory_abi = [
 	},
 	{
 		"inputs": [],
-		"name": "contratoAClonar",
+		"name": "fee",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "implementation",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -904,21 +965,39 @@ export const factory_abi = [
 	},
 	{
 		"inputs": [],
-		"name": "tarifa",
-		"outputs": [
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_newFee",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "setFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
 
 
-
-
-export const mitoken_address = "0x75c8BC86153C7bA3E78A08e70ab878FB4b20dD06"
-export const factory_address = "0x6d131d1ceC56424266cBa62d7086bd97EE971f24"
+export const mitoken_address = "0x29f4E189929c59820BbC79cD6Cc589BF25e24451"
+export const factory_address = "0xd07d03Fa086b00923065d5d43a91fFBcC16Dd2c4"

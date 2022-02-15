@@ -13,8 +13,8 @@ const TokensTable = ({ tokens }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Token Name</TableCell>
-                        <TableCell align="right">Symbol</TableCell>
-                        <TableCell align="right" ss>Contract Address</TableCell>
+                        {/* <TableCell align="right">Symbol</TableCell> */}
+                        <TableCell align="right">Contract Address</TableCell>
                         <TableCell align="right" sx={{ paddingRight: '40px' }}>Owner</TableCell>
                         <TableCell align="right">Initial Supply</TableCell>
                         <TableCell></TableCell>
@@ -29,11 +29,11 @@ const TokensTable = ({ tokens }) => {
                             <TableCell component="th" scope="row">
                                 {token.args._name}
                             </TableCell>
-                            <TableCell align="right">{token.args._symbol}</TableCell>
-                            <TableCell align="right"><a className="link-table" href={`https://rinkeby.etherscan.io/address/${token.args._nuevoToken}`} target="_blank" rel="noreferrer">{token.args._nuevoToken.slice(0, 5)}...{token.args._nuevoToken.slice(37)}</a><Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._nuevoToken)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
+                            {/* <TableCell align="right">{token.args._symbol}</TableCell> */}
+                            <TableCell align="right"><a className="link-table" href={`https://rinkeby.etherscan.io/address/${token.args._tokenAddress}`} target="_blank" rel="noreferrer">{token.args._tokenAddress.slice(0, 5)}...{token.args._tokenAddress.slice(37)}</a><Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._tokenAddress)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
                             <TableCell align="right">{token.args._owner.slice(0, 5)}...{token.args._owner.slice(37)}<Tooltip title="Copy address" arrow><IconButton onClick={() => navigator.clipboard.writeText(token.args._owner)}><ContentCopyIcon /></IconButton></Tooltip></TableCell>
-                            <TableCell align="right">{ethers.utils.formatEther((token.args._supply).toString())}</TableCell>
-                            <TableCell><Link to={`/token/${token.args._nuevoToken}`}><IconButton><AssistantIcon /></IconButton></Link></TableCell>
+                            <TableCell align="right">{ethers.utils.formatUnits(token.args._initialSupply, token.args._decimals)}</TableCell>
+                            <TableCell><Link to={`/token/${token.args._tokenAddress}`}><IconButton><AssistantIcon /></IconButton></Link></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

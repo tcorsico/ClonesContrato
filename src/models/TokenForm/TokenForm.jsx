@@ -9,6 +9,7 @@ import HelpIcon from '../../components/HelpIcon/HelpIcon';
 import CustomBackdrop from '../../components/CustomBackdrop/CustomBackdrop';
 import { useUser } from '../../context/UserContext';
 import ChainSelector from '../../components/ChainSelector/ChainSelector';
+import Modal from '../../components/Modal/Modal';
 
 const TokenForm = () => {
     // Variables
@@ -196,7 +197,8 @@ const TokenForm = () => {
                 <Typography variant="overline" sx={{ marginTop: '1rem' }}>*El fee es de {tarifa} ether + gas</Typography>
             </Box>
             {error && <Alert sx={{ marginBottom: '2rem' }} severity="error">Todos los espacios deben ser completados!</Alert>}
-            {success && <Alert sx={{ marginBottom: '2rem' }} severity="success">Tu Token {newName} se deployo en <a href={link + newAddress} target="_blank" rel="noreferrer">{link + newAddress}</a></Alert>}
+            {/* {success && <Alert sx={{ marginBottom: '2rem' }} severity="success">Tu Token {newName} se deployo en <a href={link + newAddress} target="_blank" rel="noreferrer">{link + newAddress}</a></Alert>} */}
+            <Modal success={success} setSuccess={setSuccess} newName={newName} link={link} newAddress={newAddress}/>
         </>);
 };
 

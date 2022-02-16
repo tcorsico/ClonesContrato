@@ -39,10 +39,10 @@ const MyTokens = () => {
     }
     // Component
     if (loading) {
-        return <div style={{ margin: 'auto', marginTop: '50px', width: '70%' }}>
-            <Skeleton animation="wave" width={'100%'} height={35} />
-            <Skeleton animation="wave" width={'100%'} height={35} />
-            <Skeleton animation="wave" width={'100%'} height={35} />
+        return <div id="loading">
+            <Skeleton animation="wave" width={'70%'} height={35} />
+            <Skeleton animation="wave" width={'70%'} height={35} />
+            <Skeleton animation="wave" width={'70%'} height={35} />
         </div>
     } else {
         return (

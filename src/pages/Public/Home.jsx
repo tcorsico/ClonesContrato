@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../../models/Header/Header';
 
 const Home = () => {
   return (
     <>
-      <h1>HOME</h1>
-      <Link to='/create-tokens'>IR A CREAR TOKENS</Link>
+      <Header />
     </>
   )
 }

@@ -4,14 +4,17 @@ const customTheme = createTheme({
     palette: {
         type: 'light',
         primary: {
-            main: '#663dbd',
+            main: '#6D26D7',
         },
         secondary: {
-            main: '#3ec78f',
+            main: '#00C7C5',
         },
         error: {
             main: '#dc3545',
         },
+        info: {
+            main: '#ffffff'
+        }
     },
     typography: {
         fontFamily: 'Montserrat',

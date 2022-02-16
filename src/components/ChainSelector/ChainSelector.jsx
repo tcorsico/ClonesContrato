@@ -80,7 +80,7 @@ const ChainSelector = () => {
             onChange={(e) => switchNet(e)}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
-            sx={{ border: '1px solid rgba(102, 61, 189, 0.5)', fontWeight: '600', color: '#663dbd' }}
+            sx={{ border: '1px solid rgba(255, 255, 255, 0.5)', fontWeight: '600', color: '#ffffff' }}
         >
             {menuItems.map((item) => (
                 <MenuItem key={item.key} value={item.value} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>

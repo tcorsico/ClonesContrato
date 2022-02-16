@@ -6,6 +6,9 @@
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-color: transparent !important;
 }
+svg.MuiSelect-icon {
+  color: white;
+}
 div.tokenform {
   width: 100% !important;
   display: flex;

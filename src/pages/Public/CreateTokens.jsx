@@ -3,7 +3,9 @@ import TokenForm from '../../models/TokenForm/TokenForm';
 
 const CreateTokens = () => {
     return (
-        <TokenForm />
+        <div id="create-token">
+            <TokenForm />
+        </div>
     )
 }
 

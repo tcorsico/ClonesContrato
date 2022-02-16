@@ -26,7 +26,7 @@ const RequireTokenAuth = () => {
                 let filterTo = contract.filters.newToken(tokenId);
                 contract.queryFilter(filterTo)
                     .then((event) => setTokenOwner(event[0].args._owner))
-                    .catch(() => console.error(`Flasheo`))
+                    .catch(() => setTokenOwner('ERROR'))
             }
         } catch (error) {
             console.error(error);
@@ -43,10 +43,10 @@ const RequireTokenAuth = () => {
     }, [])
 
     if (loading) {
-        return <div style={{ margin: 'auto', marginTop: '50px', width: '70%' }}>
-            <Skeleton animation="wave" width={'100%'} height={35} />
-            <Skeleton animation="wave" width={'100%'} height={35} />
-            <Skeleton animation="wave" width={'100%'} height={35} />
+        return <div id="loading">
+            <Skeleton animation="wave" width={'70%'} height={35} />
+            <Skeleton animation="wave" width={'70%'} height={35} />
+            <Skeleton animation="wave" width={'70%'} height={35} />
         </div>
     } else {
         if (currentAccount.toLowerCase() === tokenOwner.toLowerCase()) {

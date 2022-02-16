@@ -19,3 +19,24 @@ a {
   font-weight: 600;
   text-decoration: underline;
 }
+/* PAGES */
+/* LOADING */
+div#loading {
+  background: no-repeat center right url('./assets/FondoHome02.svg');
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh; 
+}
+/* CREATE TOKEN */
+div#create-token {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: no-repeat center right url('./assets/FondoHome02.svg');
+}

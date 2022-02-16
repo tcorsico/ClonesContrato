@@ -167,7 +167,7 @@ const TokenForm = () => {
     return (
         <>
             <CustomBackdrop loading={loading} />
-            <Box component="div" sx={{ '& .MuiTextField-root': { m: 1, width: '50ch' }, margin: '3rem', padding: '1rem', borderStyle: 'solid', borderWidth: '1px', borderColor: 'rgba(0, 0, 0, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '22px', boxShadow: 'rgb(0 0 0 / 19%) 0px 10px 20px, rgb(0 0 0 / 23%) 0px 6px 6px' }}>
+            <Box component="div" sx={{ '& .MuiTextField-root': { m: 1, width: '50ch' }, margin: '3rem', padding: '1rem', borderStyle: 'solid', borderWidth: '1px', borderColor: 'rgba(0, 0, 0, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '22px', boxShadow: 'rgb(0 0 0 / 19%) 0px 10px 20px, rgb(0 0 0 / 23%) 0px 6px 6px', backgroundColor: 'white', maxWidth: '50%',}}>
                 {/* ESTE ES EL FORMULARIO PROPIAMENTE DICHO */}
                 <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '50ch' }, margin: '0', padding: '0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', maxWidth: '470px' }} onSubmit={(e) => createNewToken(e)}>
                     {currentAccount !== ""

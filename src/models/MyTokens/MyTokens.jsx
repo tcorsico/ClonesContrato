@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import { ethers } from 'ethers';
 import TokensTable from "../../components/TokensTable/TokensTable";
@@ -10,10 +11,10 @@ const MyTokens = () => {
     const [myTokens, setMyTokens] = React.useState([]);
     // UseEffect
     React.useEffect(() => {
+        getMyTokens();
         setTimeout(() => {
             setLoading(false);
         }, [500]);
-        getMyTokens();
     }, [])
     // Functions
     const getMyTokens = async () => {
@@ -29,13 +30,14 @@ const MyTokens = () => {
                 // Busco en los eventos newToken solo los tokens que deployo myAddress
                 let filterTo = contract.filters.newToken(null, null, null, myAddress, null, null);
                 contract.queryFilter(filterTo)
-                    .then((event) => setMyTokens(event))
-                    .catch(() => console.error(`Flasheo`))
+                    .then((event) => setMyTokens(event.reverse()))
+                    .catch(() => console.error(`Flasheo`));
             }
         } catch (error) {
             console.error(error);
         }
     }
+    // Component
     if (loading) {
         return <div style={{ margin: 'auto', marginTop: '50px', width: '70%' }}>
             <Skeleton animation="wave" width={'100%'} height={35} />

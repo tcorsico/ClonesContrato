@@ -18,16 +18,12 @@ const style = {
 };
 
 export default function BasicModal({success, setSuccess, newName, link, newAddress}) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   
 
   return (
     <div>
       <Modal
         open={success}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

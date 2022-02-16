@@ -201,8 +201,6 @@ const TokenForm = () => {
                     {fileUrl && <img src={fileUrl} width="auto" height="64px" alt="imagen" style={{ margin: '1rem' }} />}
                     <Button variant="contained" type="submit" startIcon={<StarBorder />} sx={{ marginTop: '1rem', width: '80%', borderRadius: '13px' }} onClick={(e) => createNewToken(e)}>CREATE TOKEN</Button>
                     <Typography variant="overline" sx={{ marginTop: '1rem' }}>*El fee es de {tarifa} ether + gas</Typography>
-                    {error && <Alert sx={{ marginBottom: '2rem' }} severity="error">Todos los espacios deben ser completados!</Alert>}
-                    {success && <Alert sx={{ marginBottom: '2rem' }} severity="success">Tu Token {newName} se deployo en <a href={link + newAddress} target="_blank" rel="noreferrer">{link + newAddress}</a></Alert>}
                 </Box>
                 <div>Aca va la fotito</div>
                 {error && <Alert sx={{ marginBottom: '2rem' }} severity="error">Todos los espacios deben ser completados!</Alert>}
